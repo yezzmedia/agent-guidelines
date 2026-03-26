@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+installer_url="${AGENT_GUIDELINES_INSTALLER_URL:-https://raw.githubusercontent.com/yezzmedia/agent-guidelines/main/install.sh}"
+
+if ! command -v curl >/dev/null 2>&1; then
+  printf 'Error: curl is required.\n' >&2
+  exit 1
+fi
+
+curl -fsSL "$installer_url" | bash -s -- "$@"
