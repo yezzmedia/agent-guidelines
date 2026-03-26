@@ -2,16 +2,9 @@
 
 set -euo pipefail
 
-repo_url="${AGENT_GUIDELINES_REPO_URL:-https://github.com/yezzmedia/agent-guidelines.git}"
-repo_ref="${AGENT_GUIDELINES_REF:-}"
+repo_ref="${AGENT_GUIDELINES_REF:-main}"
+source_url="${AGENT_GUIDELINES_SOURCE_URL:-https://raw.githubusercontent.com/yezzmedia/agent-guidelines/${repo_ref}/GUIDELINES.md}"
 target_dir="./.ai/guidelines"
-temp_dir=""
-
-cleanup() {
-  if [[ -n "$temp_dir" && -d "$temp_dir" ]]; then
-    rm -rf "$temp_dir"
-  fi
-}
 
 require_command() {
   if ! command -v "$1" >/dev/null 2>&1; then
@@ -20,10 +13,7 @@ require_command() {
   fi
 }
 
-trap cleanup EXIT
-
-require_command git
-require_command mktemp
+require_command curl
 require_command php
 
 if [[ ! -f "./artisan" ]]; then
@@ -31,21 +21,9 @@ if [[ ! -f "./artisan" ]]; then
   exit 1
 fi
 
-temp_dir="$(mktemp -d "${TMPDIR:-/tmp}/agent-guidelines.XXXXXX")"
-
-printf 'Cloning agent guidelines from %s\n' "$repo_url"
-
-clone_args=(--depth=1)
-
-if [[ -n "$repo_ref" ]]; then
-  clone_args+=(--branch "$repo_ref")
-fi
-
-git clone "${clone_args[@]}" "$repo_url" "$temp_dir"
-
-printf 'Copying GUIDELINES.md into %s\n' "$target_dir"
+printf 'Downloading GUIDELINES.md from %s\n' "$source_url"
 mkdir -p "$target_dir"
-cp "$temp_dir/GUIDELINES.md" "$target_dir/GUIDELINES.md"
+curl -fsSL "$source_url" -o "$target_dir/GUIDELINES.md"
 
 printf 'Refreshing Laravel Boost files\n'
 php artisan boost:update
