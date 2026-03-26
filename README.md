@@ -46,7 +46,7 @@ If you want to use these rules in your own Laravel project, run the installer fr
 curl -fsSL https://raw.githubusercontent.com/yezzmedia/agent-guidelines/main/install.sh | bash
 ```
 
-The installer clones this repository into a temporary directory, copies `GUIDELINES.md` into `/.ai/guidelines/*`, removes the temporary clone, and runs `php artisan boost:update`.
+The installer downloads `GUIDELINES.md` directly into `/.ai/guidelines/*` and then runs `php artisan boost:update`.
 
 If you prefer to inspect or run the script manually first:
 
@@ -58,15 +58,11 @@ bash install-agent-guidelines.sh
 Manual equivalent:
 
 ```bash
-# clone the repository to a temporary location
-git clone https://github.com/yezzmedia/agent-guidelines.git /tmp/agent-guidelines
-
-# copy the guideline file into your project
+# create the target directory
 mkdir -p ./.ai/guidelines
-cp /tmp/agent-guidelines/GUIDELINES.md ./.ai/guidelines/
 
-# cleanup the temporary clone
-rm -rf /tmp/agent-guidelines
+# download the guideline file into your project
+curl -fsSL https://raw.githubusercontent.com/yezzmedia/agent-guidelines/main/GUIDELINES.md -o ./.ai/guidelines/GUIDELINES.md
 
 # regenerate Laravel Boost files
 php artisan boost:update
@@ -86,7 +82,7 @@ your-project/
 
 ## Refresh an Existing Installation
 
-If the guideline file already exists and you only want to refresh it, rerun the installer or replace the file inside `/.ai/guidelines/*` and run Boost again:
+If the guideline file already exists and you only want to refresh it, rerun the installer or redownload the file inside `/.ai/guidelines/*` and run Boost again:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/yezzmedia/agent-guidelines/main/install.sh | bash
@@ -95,7 +91,7 @@ curl -fsSL https://raw.githubusercontent.com/yezzmedia/agent-guidelines/main/ins
 Manual equivalent:
 
 ```bash
-cp /path/to/agent-guidelines/GUIDELINES.md ./.ai/guidelines/
+curl -fsSL https://raw.githubusercontent.com/yezzmedia/agent-guidelines/main/GUIDELINES.md -o ./.ai/guidelines/GUIDELINES.md
 php artisan boost:update
 ```
 
