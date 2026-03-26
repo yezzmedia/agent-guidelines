@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Guidelines | yezzmedia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #18181b; color: #a1a1aa; }
+        .section-border { border-top: 1px solid #27272a; }
+        code { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <header class="fixed top-0 w-full z-50 bg-zinc-900/80 border-b border-zinc-800 backdrop-blur-md">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex justify-between h-14 items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="text-zinc-100 font-semibold tracking-tight text-sm">yezzmedia</span>
+                    <span class="text-zinc-700">/</span>
+                    <span class="text-zinc-100 font-semibold tracking-tight text-sm">agent-guidelines</span>
+                </div>
+                <nav class="flex space-x-6 text-[11px] font-bold uppercase tracking-wider">
+                    <a href="#install" class="text-zinc-500 hover:text-zinc-100 transition-colors">Setup</a>
+                    <a href="#rules" class="text-zinc-500 hover:text-zinc-100 transition-colors">Directives</a>
+                    <a href="https://github.com/yezzmedia/agent-guidelines" target="_blank" class="text-zinc-600 hover:text-zinc-100 transition-colors underline decoration-zinc-800 underline-offset-4">GitHub</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-32 pb-24 px-6">
+        <!-- Hero Section -->
+        <section class="max-w-3xl mx-auto mb-32">
+            <h1 class="text-4xl font-semibold text-zinc-100 tracking-tight mb-6 leading-tight">
+                Standardized protocols for <br/>AI agent workflows.
+            </h1>
+            <p class="text-lg text-zinc-400 max-w-xl leading-relaxed mb-10">
+                A foundational rulebook to ensure security, modularity, and consistency across development environments. Minimalist and strictly technical.
+            </p>
+            <div class="flex space-x-4">
+                <a href="#install" class="bg-zinc-100 text-zinc-900 px-6 py-2.5 text-sm font-medium hover:bg-zinc-200 transition-colors">Installation</a>
+                <a href="https://github.com/yezzmedia/agent-guidelines/blob/main/GUIDELINES.md" target="_blank" class="border border-zinc-700 text-zinc-300 px-6 py-2.5 text-sm font-medium hover:bg-zinc-800 transition-colors">Read Specification</a>
+            </div>
+        </section>
+
+        <!-- Installation Section -->
+        <section id="install" class="max-w-3xl mx-auto mb-32 scroll-mt-24">
+            <div class="flex items-center mb-10">
+                <h2 class="text-xs font-bold text-zinc-100 uppercase tracking-[0.2em]">01 / Setup</h2>
+                <div class="flex-grow h-px bg-zinc-800 ml-6"></div>
+            </div>
+            
+            <div class="space-y-12">
+                <div>
+                    <h3 class="text-zinc-200 font-semibold mb-3">Automated Installer</h3>
+                    <p class="text-sm text-zinc-500 mb-5 leading-relaxed">Execute the following command in your project root to initialize the guidelines.</p>
+                    <div class="relative group">
+                        <div id="install-cmd" class="bg-zinc-950/50 border border-zinc-800 p-5 font-mono text-sm text-zinc-300 overflow-x-auto pr-16">
+                            curl -fsSL https://raw.githubusercontent.com/yezzmedia/agent-guidelines/main/install.sh | bash
+                        </div>
+                        <button onclick="copyInstallCommand()" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-zinc-500 hover:text-zinc-100 transition-colors bg-zinc-900 border border-zinc-800 hover:border-zinc-600 rounded-sm" title="Copy to clipboard">
+                            <svg id="copy-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+                            <svg id="check-icon" class="w-4 h-4 hidden text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <script>
+                    function copyInstallCommand() {
+                        const cmd = document.getElementById('install-cmd').innerText.trim();
+                        navigator.clipboard.writeText(cmd).then(() => {
+                            const copyIcon = document.getElementById('copy-icon');
+                            const checkIcon = document.getElementById('check-icon');
+                            
+                            copyIcon.classList.add('hidden');
+                            checkIcon.classList.remove('hidden');
+                            
+                            setTimeout(() => {
+                                copyIcon.classList.remove('hidden');
+                                checkIcon.classList.add('hidden');
+                            }, 2000);
+                        });
+                    }
+                </script>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-zinc-200 font-semibold mb-3">Agent Config</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">
+                            Reference <code class="text-zinc-100 bg-zinc-800 px-1 rounded-sm">GUIDELINES.md</code> in your system instructions.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-zinc-200 font-semibold mb-3">Verification</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">
+                            Run your project's linting or test suite to ensure compliance with the new structure.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Directives Overview -->
+        <section id="rules" class="max-w-3xl mx-auto mb-24 scroll-mt-24">
+            <div class="flex items-center mb-10">
+                <h2 class="text-xs font-bold text-zinc-100 uppercase tracking-[0.2em]">02 / Directives</h2>
+                <div class="flex-grow h-px bg-zinc-800 ml-6"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-x-16 gap-y-12">
+                <div>
+                    <h4 class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-4">Access Control</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start text-zinc-400">
+                            <span class="text-zinc-700 mr-3">—</span>
+                            <span>Strict root-level read access.</span>
+                        </li>
+                        <li class="flex items-start text-zinc-400">
+                            <span class="text-zinc-700 mr-3">—</span>
+                            <span>Package-based write operations.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-4">Git & Flow</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start text-zinc-400">
+                            <span class="text-zinc-700 mr-3">—</span>
+                            <span>Feature-specific branch isolation.</span>
+                        </li>
+                        <li class="flex items-start text-zinc-400">
+                            <span class="text-zinc-700 mr-3">—</span>
+                            <span>Mandatory user confirmation.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-4">Quality</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start text-zinc-400">
+                            <span class="text-zinc-700 mr-3">—</span>
+                            <span>Automated code style verification.</span>
+                        </li>
+                        <li class="flex items-start text-zinc-400">
+                            <span class="text-zinc-700 mr-3">—</span>
+                            <span>Strict static analysis requirements.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-4">Architecture</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start text-zinc-400">
+                            <span class="text-zinc-700 mr-3">—</span>
+                            <span>Filament-based UI architecture.</span>
+                        </li>
+                        <li class="flex items-start text-zinc-400">
+                            <span class="text-zinc-700 mr-3">—</span>
+                            <span>Modular package structure.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="max-w-3xl mx-auto border-t border-zinc-800 pt-16 flex flex-col md:flex-row justify-between items-start md:items-center space-y-8 md:space-y-0 text-zinc-500">
+            <div>
+                <span class="text-xs font-bold text-zinc-100 tracking-tight uppercase">yezzmedia</span>
+                <p class="text-[10px] text-zinc-600 uppercase tracking-widest mt-1">Foundational Engineering</p>
+            </div>
+            <div class="flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
+                <a href="mailto:info@yezzmedia.com" class="text-zinc-500 hover:text-zinc-100 transition-colors">Email</a>
+                <a href="https://yezzmedia.com" target="_blank" class="text-zinc-500 hover:text-zinc-100 transition-colors">Web</a>
+            </div>
+        </footer>
+    </main>
+
+</body>
+</html>
