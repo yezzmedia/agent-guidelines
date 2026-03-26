@@ -17,7 +17,7 @@
 
 | Item | Purpose |
 |---|---|
-| `resources/boost/guidelines/core.blade.php` | Source of truth for Laravel Boost |
+| `core.blade.php` | Source of truth for Laravel Boost |
 | Package-first rules | Keep implementation inside packages |
 | Host protection rules | Prevent unintended host changes |
 | Git and release workflow | Enforce branch, commit, PR, and release discipline |
@@ -30,7 +30,7 @@
 This repository is now centered on the Laravel Boost guideline file:
 
 ```text
-resources/boost/guidelines/core.blade.php
+core.blade.php
 ```
 
 That file is the version you should copy into your package and distribute through Laravel Boost.
@@ -39,7 +39,7 @@ That file is the version you should copy into your package and distribute throug
 
 ## Install in Your Package
 
-If you want to use these rules in your own Laravel package, copy the Boost guideline file into the same path inside your package:
+If you want to use these rules in your own Laravel package, copy the root Boost guideline file into the Boost path inside your package:
 
 ```bash
 # clone the repository to a temporary location
@@ -47,7 +47,7 @@ git clone https://github.com/yezzmedia/agent-guidelines.git /tmp/agent-guideline
 
 # copy the Laravel Boost guideline source into your package
 mkdir -p resources/boost/guidelines
-cp /tmp/agent-guidelines/resources/boost/guidelines/core.blade.php resources/boost/guidelines/core.blade.php
+cp /tmp/agent-guidelines/core.blade.php resources/boost/guidelines/core.blade.php
 
 # cleanup temporary clone
 rm -rf /tmp/agent-guidelines
@@ -95,7 +95,7 @@ After installing or updating Boost, confirm that the generated agent files inclu
 
 ## Recommended Usage
 
-- Keep `resources/boost/guidelines/core.blade.php` as the only source of truth
+- Keep `core.blade.php` as the only source of truth
 - Keep the rules short, explicit, and enforcement-oriented
 - Only add project-specific differences that Laravel Boost does not already cover well
 - Prefer package distribution over manually maintaining multiple agent entry files
