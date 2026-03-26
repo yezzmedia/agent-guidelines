@@ -17,7 +17,7 @@
 
 | Item | Purpose |
 |---|---|
-| `core.blade.php` | Source of truth for Laravel Boost |
+| `GUIDELINES.md` | Source of truth for Laravel Boost |
 | Package-first rules | Keep implementation inside packages |
 | Host protection rules | Prevent unintended host changes |
 | Git and release workflow | Enforce branch, commit, PR, and release discipline |
@@ -30,75 +30,68 @@
 This repository is now centered on the Laravel Boost guideline file:
 
 ```text
-core.blade.php
+GUIDELINES.md
 ```
 
-That file is the version you should copy into your package and distribute through Laravel Boost.
+That file is the version you should copy into `/.ai/guidelines/*` before refreshing Laravel Boost.
 
 ---
 
-## Install in Your Package
+## Install in Your Project
 
-If you want to use these rules in your own Laravel package, copy the root Boost guideline file into the Boost path inside your package:
+If you want to use these rules in your own Laravel project, copy the root guideline file into `/.ai/guidelines/*` and then refresh Laravel Boost:
 
 ```bash
 # clone the repository to a temporary location
 git clone https://github.com/yezzmedia/agent-guidelines.git /tmp/agent-guidelines
 
-# copy the Laravel Boost guideline source into your package
-mkdir -p resources/boost/guidelines
-cp /tmp/agent-guidelines/core.blade.php resources/boost/guidelines/core.blade.php
+# copy the guideline file into your project
+mkdir -p ./.ai/guidelines
+cp /tmp/agent-guidelines/GUIDELINES.md ./.ai/guidelines/
 
-# cleanup temporary clone
+# cleanup the temporary clone
 rm -rf /tmp/agent-guidelines
+
+# regenerate Laravel Boost files
+php artisan boost:update
+
 ```
 
-Resulting package structure:
+Resulting project structure:
 
 ```text
-your-package/
-└── resources/
-    └── boost/
-        └── guidelines/
-            └── core.blade.php
+your-project/
+└── .ai/
+    └── guidelines/
+        └── GUIDELINES.md
 ```
 
 ---
 
-## Publish Through Laravel Boost
+## Refresh an Existing Installation
 
-Once the file exists in your package, release that package version.
-
-In the target Laravel application:
+If the guideline file already exists and you only want to refresh it, replace the file inside `/.ai/guidelines/*` and run Boost again:
 
 ```bash
-composer require vendor/package-name --dev
-composer require laravel/boost --dev
-php artisan boost:install
-```
-
-Replace `vendor/package-name` with the package that contains your guideline file.
-
-If the package is already installed and you only want to refresh generated files:
-
-```bash
-php artisan boost:update --discover
+cp /path/to/agent-guidelines/GUIDELINES.md ./.ai/guidelines/
+php artisan boost:update
 ```
 
 ---
 
 ## Verify the Generated Files
 
-After installing or updating Boost, confirm that the generated agent files include your package guidance and still reflect your intended access boundaries, workflow rules, and verification requirements.
+After copying the guideline file and running Boost, confirm that the generated agent files include your project guidance and still reflect your intended access boundaries, workflow rules, and verification requirements.
 
 ---
 
 ## Recommended Usage
 
-- Keep `core.blade.php` as the only source of truth
+- Keep `GUIDELINES.md` as the only source of truth
+- Copy it into `./.ai/guidelines/` whenever you onboard or refresh a project
 - Keep the rules short, explicit, and enforcement-oriented
 - Only add project-specific differences that Laravel Boost does not already cover well
-- Prefer package distribution over manually maintaining multiple agent entry files
+- Prefer `php artisan boost:update` over manually maintaining generated agent entry files
 
 ---
 
@@ -106,7 +99,7 @@ After installing or updating Boost, confirm that the generated agent files inclu
 
 - The defaults in this repository are optimized for Composer package development
 - The rules are intentionally strict: if a path is not explicitly allowed, agents should not modify it
-- Laravel Boost is the intended delivery mechanism for these guidelines
+- Laravel Boost should be refreshed with `php artisan boost:update` after guideline changes
 
 ---
 
