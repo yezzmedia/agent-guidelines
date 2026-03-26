@@ -30,12 +30,20 @@
 
 If you want a simple setup without any extra tooling:
 
+### Clone and Copy
+
+```bash
+# clone the repository to a temporary location
+git clone https://github.com/yezzmedia/agent-guidelines.git /tmp/agent-guidelines
+
+# copy AGENTS.md to your project root
+cp /tmp/agent-guidelines/AGENTS.md ./
+
+# cleanup temporary clone
+rm -rf /tmp/agent-guidelines
 ```
-1. Copy AGENTS.md into the root of your repository
-2. Adjust paths such as ./packages/** to match your project layout
-3. Remove or refine any rules that are too strict for your application
-4. Commit the file so every agent session starts with the same baseline
-```
+
+That's it! The file is now in your project root. Adjust paths such as `./packages/**` to match your project layout, then commit.
 
 ---
 
