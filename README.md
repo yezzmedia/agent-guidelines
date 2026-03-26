@@ -43,12 +43,12 @@ That file is the version you should copy into `/.ai/guidelines/*` before refresh
 If you want to use these rules in your own Laravel project, run the installer from the root of your Laravel app:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yezzmedia/agent-guidelines/main/install.sh | bash
+curl -fsSL https://yezzmedia.github.io/agent-guidelines/install | bash
 ```
 
-The installer downloads `GUIDELINES.md` directly into `/.ai/guidelines/*` and then runs `php artisan boost:update`.
+The GitHub Pages bootstrap downloads the canonical installer, which then downloads `GUIDELINES.md` directly into `/.ai/guidelines/*` and runs `php artisan boost:update`.
 
-If you prefer to inspect or run the script manually first:
+If you prefer to inspect or run the canonical installer manually first:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/yezzmedia/agent-guidelines/main/install.sh -o install-agent-guidelines.sh
@@ -85,7 +85,7 @@ your-project/
 If the guideline file already exists and you only want to refresh it, rerun the installer or redownload the file inside `/.ai/guidelines/*` and run Boost again:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yezzmedia/agent-guidelines/main/install.sh | bash
+curl -fsSL https://yezzmedia.github.io/agent-guidelines/install | bash
 ```
 
 Manual equivalent:
