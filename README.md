@@ -1,118 +1,115 @@
-<!-- Logo/Title Section -->
+<!-- Header -->
 <p align="center">
-  <img src="https://img.shields.io/badge/Agent-Guidelines-FF6B35?style=for-the-badge&logo=laravel&logoColor=white" alt="Agent Guidelines">
-  <img src="https://img.shields.io/badge/Laravel-Ready-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel Ready">
-  <img src="https://img.shields.io/badge/Package--First-6C5CE7?style=for-the-badge&logo=packagist&logoColor=white" alt="Package First">
+  <img src="https://img.shields.io/badge/Laravel-Boost-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel Boost">
+  <img src="https://img.shields.io/badge/Package-First-6C5CE7?style=for-the-badge&logo=packagist&logoColor=white" alt="Package First">
+  <img src="https://img.shields.io/badge/Agent-Guidelines-111827?style=for-the-badge&logo=github&logoColor=white" alt="Agent Guidelines">
 </p>
 
 <h1 align="center">Agent Guidelines</h1>
 
 <p align="center">
-  Reusable AI agent guidelines for package-driven Laravel workflows
+  Reusable Laravel Boost guideline source for package-driven AI workflows
 </p>
 
 ---
 
-## 📦 What You Get
+## What This Repository Ships
 
-| Icon | Feature | Description |
-|:---:|---|---|
-| 🔒 | **Strict Access Control** | Explicit read/write allowlists for directory boundaries |
-| 📦 | **Package-First Architecture** | Host application stays untouched; all code goes into packages |
-| 🌿 | **Git Workflow** | Branch naming, commit rules, PR flow, and cleanup discipline |
-| ✅ | **Verification Gates** | Required checks before any feature is marked complete |
-| 📚 | **Release Safety** | SemVer rules and API stability contracts |
-| 🌐 | **Language Standards** | English for code, German for user communication |
+| Item | Purpose |
+|---|---|
+| `resources/boost/guidelines/core.blade.php` | Source of truth for Laravel Boost |
+| Package-first rules | Keep implementation inside packages |
+| Host protection rules | Prevent unintended host changes |
+| Git and release workflow | Enforce branch, commit, PR, and release discipline |
+| Verification gates | Define required quality checks before completion |
 
 ---
 
-## ⚡ Quick Start — Use It Directly
+## Source of Truth
 
-If you want a simple setup without any extra tooling:
+This repository is now centered on the Laravel Boost guideline file:
 
-### Clone and Copy
+```text
+resources/boost/guidelines/core.blade.php
+```
+
+That file is the version you should copy into your package and distribute through Laravel Boost.
+
+---
+
+## Install in Your Package
+
+If you want to use these rules in your own Laravel package, copy the Boost guideline file into the same path inside your package:
 
 ```bash
 # clone the repository to a temporary location
 git clone https://github.com/yezzmedia/agent-guidelines.git /tmp/agent-guidelines
 
-# copy AGENTS.md to your project root
-cp /tmp/agent-guidelines/AGENTS.md ./
+# copy the Laravel Boost guideline source into your package
+mkdir -p resources/boost/guidelines
+cp /tmp/agent-guidelines/resources/boost/guidelines/core.blade.php resources/boost/guidelines/core.blade.php
 
 # cleanup temporary clone
 rm -rf /tmp/agent-guidelines
 ```
 
-That's it! The file is now in your project root. Adjust paths such as `./packages/**` to match your project layout, then commit.
+Resulting package structure:
 
----
-
-## 🚀 Laravel Boost Installation
-
-If you maintain a Laravel package and want these rules to be distributed through Laravel Boost, use them as a Boost guideline source.
-
-### Step 1 — Add the guideline file to your package
-
-```
-📁 your-package/
+```text
+your-package/
 └── resources/
     └── boost/
         └── guidelines/
             └── core.blade.php
 ```
 
-Place your project-specific rules in that file. Laravel Boost will include them when users install or update Boost resources.
+---
 
-### Step 2 — Publish your package
+## Publish Through Laravel Boost
 
-```
-📦 Release the package version that contains your Boost guideline file
-```
+Once the file exists in your package, release that package version.
 
-### Step 3 — Install Boost in the target Laravel project
+In the target Laravel application:
 
 ```bash
-# install your package first
 composer require vendor/package-name --dev
-
-# then install Laravel Boost
 composer require laravel/boost --dev
 php artisan boost:install
 ```
 
-> 💡 Replace `vendor/package-name` with the package that ships your Boost guideline file
+Replace `vendor/package-name` with the package that contains your guideline file.
 
-If the package is already installed, you can refresh the generated files later:
+If the package is already installed and you only want to refresh generated files:
 
 ```bash
 php artisan boost:update --discover
 ```
 
-### Step 4 — Verify the generated agent files
+---
 
-```
-✅ Confirm that the generated agent files include your package guidance
-```
+## Verify the Generated Files
+
+After installing or updating Boost, confirm that the generated agent files include your package guidance and still reflect your intended access boundaries, workflow rules, and verification requirements.
 
 ---
 
-## 🔄 Recommended Workflow
+## Recommended Usage
 
-- 📄 Keep `AGENTS.md` as the source text when you need a repository-level file
-- 📂 Mirror the same intent into `resources/boost/guidelines/core.blade.php` when shipping rules through Laravel Boost
-- 🎯 Keep the rules short, explicit, and enforcement-oriented
-- 🔍 Only include project-specific differences that are not already covered well by Laravel Boost itself
+- Keep `resources/boost/guidelines/core.blade.php` as the only source of truth
+- Keep the rules short, explicit, and enforcement-oriented
+- Only add project-specific differences that Laravel Boost does not already cover well
+- Prefer package distribution over manually maintaining multiple agent entry files
 
 ---
 
-## 📝 Notes
+## Notes
 
-- The current defaults are optimized for Composer package development
+- The defaults in this repository are optimized for Composer package development
 - The rules are intentionally strict: if a path is not explicitly allowed, agents should not modify it
-- Laravel Boost is the best distribution path when you want package rules to follow the package into other Laravel projects
+- Laravel Boost is the intended delivery mechanism for these guidelines
 
 ---
 
 <p align="center">
-  <sub>Built with 🔥 for package-driven Laravel teams</sub>
+  <sub>Built for package-driven Laravel teams using Laravel Boost</sub>
 </p>
