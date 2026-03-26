@@ -18,6 +18,7 @@
 | Item | Purpose |
 |---|---|
 | `GUIDELINES.md` | Source of truth for Laravel Boost |
+| `install.sh` | One-line installer for Laravel projects |
 | Package-first rules | Keep implementation inside packages |
 | Host protection rules | Prevent unintended host changes |
 | Git and release workflow | Enforce branch, commit, PR, and release discipline |
@@ -39,7 +40,22 @@ That file is the version you should copy into `/.ai/guidelines/*` before refresh
 
 ## Install in Your Project
 
-If you want to use these rules in your own Laravel project, copy the root guideline file into `/.ai/guidelines/*` and then refresh Laravel Boost:
+If you want to use these rules in your own Laravel project, run the installer from the root of your Laravel app:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/yezzmedia/agent-guidelines/main/install.sh | bash
+```
+
+The installer clones this repository into a temporary directory, copies `GUIDELINES.md` into `/.ai/guidelines/*`, removes the temporary clone, and runs `php artisan boost:update`.
+
+If you prefer to inspect or run the script manually first:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/yezzmedia/agent-guidelines/main/install.sh -o install-agent-guidelines.sh
+bash install-agent-guidelines.sh
+```
+
+Manual equivalent:
 
 ```bash
 # clone the repository to a temporary location
@@ -70,7 +86,13 @@ your-project/
 
 ## Refresh an Existing Installation
 
-If the guideline file already exists and you only want to refresh it, replace the file inside `/.ai/guidelines/*` and run Boost again:
+If the guideline file already exists and you only want to refresh it, rerun the installer or replace the file inside `/.ai/guidelines/*` and run Boost again:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/yezzmedia/agent-guidelines/main/install.sh | bash
+```
+
+Manual equivalent:
 
 ```bash
 cp /path/to/agent-guidelines/GUIDELINES.md ./.ai/guidelines/
@@ -88,6 +110,7 @@ After copying the guideline file and running Boost, confirm that the generated a
 ## Recommended Usage
 
 - Keep `GUIDELINES.md` as the only source of truth
+- Use `install.sh` for the fastest project bootstrap and refresh flow
 - Copy it into `./.ai/guidelines/` whenever you onboard or refresh a project
 - Keep the rules short, explicit, and enforcement-oriented
 - Only add project-specific differences that Laravel Boost does not already cover well
