@@ -60,7 +60,7 @@ If a rule conflicts, these project-specific rules take precedence.
 - Default package vendor is `yezzmedia`.
 - Default package contact email is `info@yezzmedia.com`.
 - All code, tests, comments, documentation, commit messages, and generated package content must be written in English.
-- Only direct communication with the user may be in German.
+- Only direct communication with the user may be in German; correct umlauts (ä, ö, ü, ß) must always be used.
 - Prefix every user-facing response with `RE: `.
 
 ## Git Workflow
