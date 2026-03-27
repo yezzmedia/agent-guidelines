@@ -122,6 +122,12 @@ After copying the guideline file and running Boost, confirm that the generated a
 
 ---
 
+## License
+
+This repository is released under the MIT License. See `LICENSE`.
+
+---
+
 <p align="center">
   <sub>Built for package-driven Laravel teams using Laravel Boost</sub>
 </p>
