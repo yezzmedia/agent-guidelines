@@ -40,6 +40,14 @@ If a rule conflicts, these project-specific rules take precedence.
 - If host integration is required, provide explicit manual steps instead of auto-applying changes.
 - Do not install, remove, or update dependencies without explicit approval.
 
+## Approval Gates
+
+- Do not run `composer install`, `composer update`, or `composer require` inside package source directories unless the user explicitly approves it for that directory.
+- Treat external package directories as source-only by default. Do not create `vendor/`, `composer.lock`, build caches, or other install artifacts there unless the user explicitly approves it.
+- Do not modify the host application's dependency graph, lock file, or installed packages without explicit user approval.
+- Before running any dependency installation, lockfile-generating command, or other environment-changing command, present the exact command and wait for user approval.
+- When working on external packages, prefer creating source files only. Dependency installation must happen from the intended consuming host project unless the user explicitly asks otherwise.
+
 ## UI Architecture
 
 - Use Filament for backend interfaces only.
