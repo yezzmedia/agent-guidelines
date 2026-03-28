@@ -48,6 +48,10 @@ If a rule conflicts, these project-specific rules take precedence.
 - Before running any dependency installation, lockfile-generating command, or other environment-changing command, present the exact command and wait for user approval.
 - When working on external packages, prefer creating source files only. Dependency installation must happen from the intended consuming host project unless the user explicitly asks otherwise.
 
+## Code Generation
+
+- Always use the framework's built-in commands (e.g., `php artisan make:model`, `make:migration`, `make:controller`) to generate new classes, models, migrations, or other scaffolding instead of creating files manually.
+
 ## UI Architecture
 
 - Use Filament for backend interfaces only.
