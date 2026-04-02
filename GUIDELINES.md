@@ -3,38 +3,8 @@
 These rules extend Laravel Boost defaults.
 If a rule conflicts, these project-specific rules take precedence.
 
-## Allowed Access
-
-### Read Allowed
-
-- `./` (the current project root and its contents)
-- Additional approved directories: none
-
-### Write Allowed
-
-- `./packages/**` for implementation code and package-owned files
-- Additional approved directories: none
-
-### Forbidden Access
-
-- Any path not explicitly listed in `Read Allowed` or `Write Allowed`
-- Any host application path
-- Any sibling project, home, system, temporary, vendor, external, or mounted path unless explicitly added first
-- `./vendor/**`
-- `./node_modules/**`
-- `./storage/framework/**`
-- `./bootstrap/cache/**`
-- `./.git/**`
-
-### Enforcement
-
-- If a path is not explicitly listed in `Read Allowed` or `Write Allowed`, do not search, read, create, edit, move, or delete anything inside it.
-- Write operations are allowed only inside `Write Allowed`.
-- Implementation code must only be written inside `./packages/**`.
-
 ## Scope and Modularity
 
-- Work only within the allowed access rules defined above.
 - Write all implementation code in Composer package paths for maximum modularity.
 - The host application is read-only by default and must remain untouched unless explicitly requested.
 - If host integration is required, provide explicit manual steps instead of auto-applying changes.
